@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Enrollment Management</h3>
+
+<form method="POST" action="/add_enrollment" class="mb-3">
+  <div class="row">
+    <div class="col">
+      <select name="student_id" class="form-select" required>
+        <option value="">Select Student</option>
+        {% for s in students %}
+        <option value="{{ s[0] }}">{{ s[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col">
+      <select name="course_id" class="form-select" required>
+        <option value="">Select Course</option>
+        {% for c in courses %}
+        <option value="{{ c[0] }}">{{ c[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-success w-100">Enroll</button>
+    </div>
+  </div>
+</form>
+
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th><th>Student</th><th>Course</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for e in data %}
+    <tr>
+      <td>{{ e[0] }}</td>
+      <td>{{ e[1] }}</td>
+      <td>{{ e[2] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

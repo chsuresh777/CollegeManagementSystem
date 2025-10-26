@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Course Management</h3>
+
+<form method="POST" action="/add_course" class="mb-3">
+  <div class="row">
+    <div class="col">
+      <input type="text" name="name" placeholder="Course Name" class="form-control" required>
+    </div>
+    <div class="col">
+      <input type="text" name="description" placeholder="Description" class="form-control" required>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-success w-100">Add</button>
+    </div>
+  </div>
+</form>
+
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th><th>Name</th><th>Description</th><th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in courses %}
+    <tr>
+      <td>{{ c[0] }}</td>
+      <td>{{ c[1] }}</td>
+      <td>{{ c[2] }}</td>
+      <td><a href="/delete_course/{{ c[0] }}" class="btn btn-danger btn-sm">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

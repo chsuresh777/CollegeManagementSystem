@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Student Management</h3>
+
+<form method="POST" action="/add_student" class="mb-3">
+  <div class="row">
+    <div class="col">
+      <input type="text" name="name" placeholder="Name" class="form-control" required>
+    </div>
+    <div class="col">
+      <input type="email" name="email" placeholder="Email" class="form-control" required>
+    </div>
+    <div class="col">
+      <input type="text" name="course" placeholder="Course" class="form-control" required>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-success w-100">Add</button>
+    </div>
+  </div>
+</form>
+
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th><th>Name</th><th>Email</th><th>Course</th><th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in students %}
+    <tr>
+      <td>{{ s[0] }}</td>
+      <td>{{ s[1] }}</td>
+      <td>{{ s[2] }}</td>
+      <td>{{ s[3] }}</td>
+      <td><a href="/delete_student/{{ s[0] }}" class="btn btn-danger btn-sm">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
